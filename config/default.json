@@ -1,0 +1,8 @@
+{
+    "database":{
+        "uri": "mongodb://pharaoh:1234Abcd@ds141248.mlab.com:41248/sphinx"
+    },
+    "server":{
+        "port": 3000
+    }
+}
