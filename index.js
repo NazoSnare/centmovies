@@ -12,7 +12,7 @@ const Sequelize = require("sequelize");
 
 //GLOBAL VARIABLES
 let port = process.env.PORT || config.get("server.port");
-let log = console.log; //put in a variable because it will be easier to switch everything to log to a file instead of console
+let logger = console.log; //put in a variable because it will be easier to switch everything to log to a file instead of console
 let databaseUri = config.get('database.uri');
 const db = new Sequelize(databaseUri);
 
@@ -48,5 +48,5 @@ logger("DB AUTHENTICATE ERROR",err);
 app.use('/api', apiRouter);
 
 app.listen(port, () => {
-  console.log(`Movie API server running on htpp://localhost:${port}`);
+  logger(`Movies API server running on htpp://localhost:${port}`);
 });
