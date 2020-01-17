@@ -1,6 +1,6 @@
 {
     "database":{
-        "uri": "mongodb://pharaoh:1234Abcd@ds141248.mlab.com:41248/sphinx"
+        "uri": "postgres://user:pass@postgres:5432/db"
     },
     "server":{
         "port": 3000
