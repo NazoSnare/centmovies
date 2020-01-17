@@ -10,14 +10,14 @@ services:
       PORT: 3000
     ports:
       - "3000:3000"
-    command: npm run dev
+    command: npm run start
     volumes:
-      - .:/usr/src/centmovies
+      - .:/centmovies
 
   postgres:
     image: postgres:10.4
     ports:
-      - "35432:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass

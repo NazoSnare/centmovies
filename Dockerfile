@@ -1,8 +1,8 @@
 FROM node:latest
-RUN mkdir -p /usr/src/centmovies
-WORKDIR /usr/src/centmovies
-COPY package.json /usr/src/centmovies
+RUN mkdir -p /centmovies
+WORKDIR /centmovies
+COPY package.json /centmovies
 RUN npm install
-COPY . /usr/src/centmovies
+COPY . /centmovies
 EXPOSE 4001
 CMD ["npm", "start"]
