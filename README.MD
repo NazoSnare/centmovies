@@ -15,7 +15,7 @@ It binds the application server to `localhost:3000`
 
 ## Api Url are:
 - `GET http://localhost:3000/api/v1/movies`: the movies name
--`POST http://localhost:3000/api/v1/movies`: body should include title, genre & description.
+- `POST http://localhost:3000/api/v1/movies`: body should include title, genre & description.
 - `GET http://localhost:3000/api/v1/movies/:id` : Returns movie with given id
 - `DEL http://localhost:3000/api/v1/movies/:id` : Deletes a movie with the specified id
 - `PUT http://localhost:3000/api/v1/movies/:id` : Updates a movie with the specified id
