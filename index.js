@@ -54,7 +54,7 @@ setTimeout(()=>{
 .catch( err => {
 logger("DB AUTHENTICATE ERROR",err);
 });
-}, 10000);
+}, 3000);
 
 //routes
 app.use('/api', apiRouter);

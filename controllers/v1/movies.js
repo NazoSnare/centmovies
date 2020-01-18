@@ -59,6 +59,7 @@ let addMovie = async(req, res, next) => {
    let filteredBody = _.pick(body, ['title', 'genre', 'description']);
    //insert into database
    try {
+       //could use uuid node package to create unique id and then add id as a field but for simplicity I did not
     let movie = await Movie.create(filteredBody);
     if(movie){
         logger('MOVIE ADDED',movie);
@@ -80,11 +81,104 @@ let addMovie = async(req, res, next) => {
         msg: "Movie not added to db due to error, contact admin"
     });
    }
+};//end of add movie
+
+
+let getMovie = async(req, res, next) => {
+      let id = req.params.id;
+
+      try {
+          let movie = await Movie.findByPk(id);
+          if(movie){
+            res.json({
+                success: true,
+                msg: 'movie successfully found',
+                movie
+            });
+          }else{
+            res.json({
+                success: false,
+                msg: 'movie not found',
+                movie: null
+            });
+          }
+       
+      } catch (error) {
+          logger("ERROR GETTING MOVIE BY ID",error);
+        res.json({
+            success: false,
+            msg: 'Error getting the movie'
+        });
+      }
+};//end of get movie
+
+
+let updateMovie = async(req, res, next) => {
+    let id = req.params.id;
+    let body = req.body;
+    //sanitise the body according before using in db call...but I am using it just as it is
+    try {
+        const result = await Movie.update(
+           body,
+            { where: { id } }
+          );
+
+          if(result){
+            res.json({
+                success: true,
+                msg: 'movie successfully updated',
+                movie: result
+            });
+          }else{
+            res.json({
+                success: false,
+                msg: 'movie not found'
+            });
+          }
+
+       
+        
+    } catch (error) {
+        logger("ERROR UPDATING MOVIE BY ID",error);
+        res.json({
+            success: false,
+            msg: 'Error updatingthe movie'
+        });
+    }
   
+};//end of update movie
+
+let deleteMovie = async(req, res, next) => {
+    let id = req.params.id;
+  try {
+      let movie = await Movie.findByPk(id);
+      
+      if(movie){
+         let destroyed = await movie.destroy();
+          
+          if(destroyed){
+            res.json({
+                success: true,
+                msg: 'movie successfully deleted',
+                movie
+            });
+          }
+      }else{
+        res.json({
+            success: false,
+            msg: 'Could not find the movie'
+        }); 
+      }
+
    
-
-
-};
+  } catch (error) {
+    logger("ERROR Deleting MOVIE BY ID",error);
+    res.json({
+        success: false,
+        msg: 'Error deleting the movie'
+    });
+  }
+};//end of delete movie
 
 
 
@@ -92,5 +186,8 @@ let addMovie = async(req, res, next) => {
 
 module.exports = {
     getAllMovies,
-    addMovie
+    addMovie,
+    getMovie,
+    updateMovie,
+    deleteMovie
 }
