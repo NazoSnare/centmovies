@@ -60,5 +60,5 @@ logger("DB AUTHENTICATE ERROR",err);
 app.use('/api', apiRouter);
 
 app.listen(port, () => {
-  logger(`Movies API server runs on htpp://localhost:${port}`);
+  logger(`Movies API server running on htpp://localhost:${port}`);
 });
